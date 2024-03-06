@@ -11,6 +11,7 @@ function makeDrop(divName, className) {
         else {
             menu.classList.remove('showing');
             menu.classList.add('hidden')
+            
         }
         
     })
