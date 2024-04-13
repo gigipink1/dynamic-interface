@@ -76,19 +76,21 @@ header {
 .carousel {
     display: grid;
     grid-template-columns: 100% 0;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: 500px 1fr;
     grid-column: 1;
     overflow: hidden;
     position: relative;
+    justify-content: center;
 
 }
 
 .slides {
  
  display:flex;
+ overflow:hidden;
  justify-content: space-around;
  align-items: center;
- width: 300%;
+ width: 100%;
  position:relative;
  
 
@@ -97,6 +99,26 @@ header {
 .circles {
     grid-row: 2;
     justify-self: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #ececec;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.slides img {
+    display:none;
+}
+
+img.showing {
+    display: block;
+}
+
+.dot.current {
+    background-color: #969393;
 }
 
 .direction {
