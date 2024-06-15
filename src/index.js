@@ -19,38 +19,8 @@ function makeDrop(divName, className) {
 
 }
 
-function setPosition() {
-    const slide = document.querySelector('.slides');
-    slide.style.right = '0%';
-    // console.log(slide.style.right);
-} 
 
 
-function getPosition () {
-    const slide = document.querySelector('.slides');
-    return(slide.style.right);
-    
-}
-
-function moveRight() {
-    const slides = document.querySelector('.slides');
-    const currentPos = getPosition();
-    const str = currentPos.replace('%','');
-    // console.log(str);
-    const newPic = parseInt(str) + 100;
-    // console.log(newPic);
-    slides.style.right = `${newPic}%`;
-}
-
-function moveLeft() {
-    const slides = document.querySelector('.slides');
-    const currentPos = getPosition();
-    const str = currentPos.replace('%','');
-    // console.log(str);
-    const newPic = parseInt(str) - 100;
-    // console.log(newPic);
-    slides.style.right = `${newPic}%`;
-}
 
 function changeSlide(slideNum) {
     const slide = document.querySelectorAll('.slides img');
@@ -63,6 +33,19 @@ function changeSlide(slideNum) {
     chosenSlide.classList.add('showing');
 }
 
+function changeDot(slideNum) {
+  const dots = document.querySelectorAll('.dot'); 
+  dots.forEach((dot) => {
+    if (dot.classList[1] === slideNum && !dot.classList.contains('current')) {
+        dot.classList.add('current');
+    }
+    else {
+        dot.classList.remove('current');
+    }
+
+  })
+}
+
 
 function dotButton() {
     const dots = document.querySelectorAll('.dot');
@@ -70,14 +53,37 @@ function dotButton() {
         dot.addEventListener('click', (e) => {
         const slideNumber = e.target.classList[1];
         changeSlide(slideNumber);
+        changeDot(slideNumber);
+        
         });
     })
 }
 
 
+function moveRight() {
+    const currentSlide = document.querySelector('img.showing');
+    if (currentSlide.nextElementSibling !== null) {
+        const slideNumber = currentSlide.nextElementSibling.classList[0];
+         changeSlide(slideNumber);
+         changeDot(slideNumber); };
+    
+}
+
+function moveLeft() {
+ const currentSlide = document.querySelector('img.showing');
+    if (currentSlide.previousElementSibling !== null) {
+        const slideNumber = currentSlide.previousElementSibling.classList[0];
+        changeSlide(slideNumber);
+        changeDot(slideNumber);
+    }
+
+}
+
+
+
+
 
 makeDrop('.menu', '.dropdown');
-setPosition();
 
 const slide = document.querySelector('.direction.right');
 slide.addEventListener('click', ()=>{
@@ -88,6 +94,7 @@ slide.addEventListener('click', ()=>{
 const left = document.querySelector('.direction.left');
 left.addEventListener('click', ()=>{
     moveLeft();
-})
+}) 
 
 dotButton();
+
