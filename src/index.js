@@ -23,8 +23,8 @@ function makeDrop(divName, className) {
 
 
 function changeSlide(slideNum) {
-    const slide = document.querySelectorAll('.slides img');
-    slide.forEach((slide) => {
+    const slides = document.querySelectorAll('.slides img');
+    slides.forEach((slide) => {
         if (slide.classList.contains ('showing')) {
             slide.classList.remove('showing')
         }
